@@ -1,0 +1,21 @@
+{
+    "name": "gemvc/aggregator",
+    "description": "Gemvc Service Aggregator",
+    "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "^7.8",
+        "firebase/php-jwt": "^6.9"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Gemvc\\Aggregator\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ali Khorsandfard"
+        }
+    ],
+    "minimum-stability": "stable"
+}

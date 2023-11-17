@@ -1,5 +1,5 @@
 <?php
-namespace GemAggregator\Helper;
+namespace Aggregator\Helper;
 
 class TypeHelper
 {

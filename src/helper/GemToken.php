@@ -1,9 +1,9 @@
 <?php
-namespace GemAggregator\Helper;
+namespace Aggregator\Helper;
 
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
-use GemAggregator\Helper\TypeHelper;
+use Aggregator\Helper\TypeHelper;
 
 class GemToken
 {

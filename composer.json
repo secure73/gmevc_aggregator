@@ -9,8 +9,8 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "GemAggregator\\": "src/",
-            "GemAggregator\\Helper\\": "src/helper/"
+            "Aggregator\\": "src/",
+            "Aggregator\\Helper\\": "src/helper/"
         }
     },
     "authors": [

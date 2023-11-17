@@ -1,7 +1,7 @@
 <?php
-namespace GemAggregator\Helper;
+namespace Aggregator\Helper;
 
-use GemAggregator\Helper\TypeHelper;
+use Aggregator\Helper\TypeHelper;
 
 class GemRequest
 {

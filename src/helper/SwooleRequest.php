@@ -1,8 +1,8 @@
 <?php
-namespace GemAggregator\Helper;
+namespace Aggregator\Helper;
 
-use GemAggregator\Helper\StringHelper;
-use GemAggregator\Helper\GemRequest;
+use Aggregator\Helper\StringHelper;
+use Aggregator\Helper\GemRequest;
 
 class SwooleRequest
 {

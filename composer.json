@@ -4,7 +4,8 @@
     "type": "library",
     "require": {
         "guzzlehttp/guzzle": "^7.8",
-        "firebase/php-jwt": "^6.9"
+        "firebase/php-jwt": "^6.9",
+        "predis/predis": "^2.2"
     },
     "license": "MIT",
     "autoload": {

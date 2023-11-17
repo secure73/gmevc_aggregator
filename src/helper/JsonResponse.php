@@ -1,6 +1,5 @@
 <?php
-
-namespace GemLibrary\Http;
+namespace GemAggregator\Helper;
 
 class JsonResponse
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace GemLibrary\Http;
+namespace GemAggregator\Helper;
 
-use GemLibrary\Helper\StringHelper;
-use GemLibrary\Http\GemRequest as HttpGemRequest;
+use GemAggregator\Helper\GemRequest;
+
 
 class ApacheRequest
 {
-    public  HttpGemRequest $request; 
+    public  GemRequest $request; 
 
     public function __construct()
     {

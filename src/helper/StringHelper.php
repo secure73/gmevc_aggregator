@@ -1,6 +1,5 @@
 <?php
-
-namespace GemLibrary\Helper;
+namespace GemAggregator\Helper;
 
 class StringHelper
 {

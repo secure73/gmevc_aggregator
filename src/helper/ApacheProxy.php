@@ -4,14 +4,13 @@ namespace GemAggregator\Helper;
 //Proxy for Apache Server
 class ApacheProxy {
     private $targetUrl;
-    public mixed $response;
     public ?string $error;
 
     public function __construct($targetUrl) {
         $this->targetUrl = $targetUrl;
     }
 
-    public function forwardRequest() {
+    public function forwardRequest():false|string {
         // Get the request method (GET, POST, etc.)
         $method = $_SERVER['REQUEST_METHOD'];
 
@@ -24,8 +23,8 @@ class ApacheProxy {
         // Validate the target URL
         if (!filter_var($this->targetUrl, FILTER_VALIDATE_URL)) {
             http_response_code(400);
-            echo "Invalid target URL";
-            return;
+            $this->error = "Invalid target URL";
+            return false;
         }
 
         // Create and configure the cURL session
@@ -44,9 +43,9 @@ class ApacheProxy {
         // Check for cURL errors
         if (curl_errno($ch)) {
             http_response_code(500);
-            echo "Error during request: " . curl_error($ch);
+            $this->error = curl_error($ch);
             curl_close($ch);
-            return;
+            return false;
         }
 
         // Get the response headers
@@ -70,7 +69,7 @@ class ApacheProxy {
         }
 
         // Forward the response body to the client
-        echo $response;
+        return $response;
     }
 }
 

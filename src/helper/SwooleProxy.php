@@ -8,35 +8,47 @@ use Swoole\Http\Response;
 
 class SwooleProxy {
     private $remoteUrl;
+    public ?string $error;
 
     public function __construct(string $remoteUrl) {
         $this->remoteUrl = $remoteUrl;
     }
 
-    public function forwardRequest(Request $request, Response $response) {
+    /**
+     * @param Request $swoole_request
+     * @param Response $swoole_response
+     */
+    public function forwardRequest(Request $swoole_request, Response $swoole_response) {
         $client = new Client($this->remoteUrl);
 
         // Forward request headers
-        foreach ($request->header as $key => $value) {
+        foreach ($swoole_request->header as $key => $value) {
             $client->setHeader($key, $value);
         }
 
-        // Forward request body
-        $client->setData($request->rawContent());
+        // Forward swoole_request body
+        $client->setData($swoole_request->rawContent());
 
-        // Forward request method and path
-        $client->setMethod($request->server['request_method']);
-        $client->setPath($request->server['request_uri']);
+        // Forward swoole_request method and path
+        $client->setMethod($swoole_request->server['request_method']);
+        $client->setPath($swoole_request->server['request_uri']);
 
         // Forward request
-        $client->execute(function (Client $client) use ($response) {
+        $client->execute(function (Client $client) use ($swoole_response) {
+            if ($client->statusCode >= 399) {
+                $this->error = 'Error: ' . $client->statusCode;
+                $swoole_response->status($client->statusCode);
+                $swoole_response->end($this->error);
+                return;
+            }
+
             // Forward response headers
             foreach ($client->headers as $key => $value) {
-                $response->header($key, $value);
+                $swoole_response->header($key, $value);
             }
 
             // Forward response body
-            $response->end($client->body);
+            $swoole_response->end($client->body);
         });
     }
 }
